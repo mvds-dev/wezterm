@@ -1,20 +1,16 @@
--- Pull in the wezterm API
-local wezterm = require 'wezterm'
-
--- This will hold the configuration.
+local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
--- This is where you actually apply your config choices
+-- Import settings from other files
 
--- For example, changing the color scheme:
-config.color_scheme = 'Ayu Mirage'
+local appearance = require("wezterm.appearance")
+local keybindings = require("wezterm.keybindings")
+local tabs_and_panes = require("wezterm.tabs_and_panes")
 
--- and finally, return the configuration to wezterm
+-- Apply settings from other modules
 
-config.font = wezterm.font 'Monofur Nerd Font'
-
-config.font_size = 16
-config.line_height = 1.0
-
+appearance.apply_to(config)
+keybindings.apply_to(config)
+tabs_and_panes.apply_to(config)
 
 return config
